@@ -1,0 +1,31 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id('com.github.johnrengelman.shadow') version '7.1.2'
+}
+
+group = 'io.github.pcranaway.brixton'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://jitpack.io' }
+}
+
+dependencies {
+    compileOnly('org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT')
+
+    implementation('com.github.Revxrsal.Lamp:common:3.1.2')
+    implementation('com.github.Revxrsal.Lamp:bukkit:3.1.2')
+
+    implementation('fr.minuskube.inv:smart-invs:1.2.7')
+
+    implementation('net.md-5:bungeecord-chat:1.16-R0.4')
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+    kotlinOptions.javaParameters = true
+}
+
+tasks.build.dependsOn(shadowJar)
